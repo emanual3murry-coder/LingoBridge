@@ -3,14 +3,15 @@ Translation Software
 
 Project Title & Description
 
-Provide the name of your project along with a brief description of what the program does and its overall purpose.
+This project was created for the software LingoBridge, which is a Translation Platform focused on real-time connection between speakers of different languages. 
 
 Overview
-Explain the purpose of your application, its main features, and its core functionality.
+
+The purpose of the application is to build connection between speakers of different languages, focusing on colloquial communication. Some features include side-by-side translation and selecting from different languages. 
 
 Prerequisites
 
-List any tools, software, or knowledge required to run the project (for example, Python version, Flask, or additional packages).
+To run the project, you must have a basic understanding of Python principles, 
 
 Installation Instructions (if applicable)
 
