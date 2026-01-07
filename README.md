@@ -7,26 +7,28 @@ This project was created for the software LingoBridge, which is a Translation Pl
 
 Overview
 
-The purpose of the application is to build connection between speakers of different languages, focusing on colloquial communication. Some features include side-by-side translation and selecting from different languages. 
+The purpose of the application is to bridge the language gap between speakers of different languages, with a focus on facilitating colloquial communication. Some features include side-by-side translation and selecting from different languages. 
 
 Prerequisites
 
-To run the project, you must have a basic understanding of Python principles, 
+To run the project, you must have a basic understanding of Python principles. 
 
 Installation Instructions (if applicable)
 
-Include any required setup steps, such as installing dependencies, libraries, or frameworks.
+This program requires tkinter (tk), pandas(pd), and deep_translator (GoogleTranslator)
 
 How to Run the Program
 
-Clearly explain how to launch the application, including which files to run and any required commands.
+To run it is best to use the path .venv
 
 Usage Instructions
 
-Describe how a user interacts with your application, including available features, inputs, and expected outputs.
+When you launch the platform, you open up to a screen that allows you to choose the languages you are translating between. After selecting languages, type the word or phrase you want on the left side and click "Translate". Then, on the right side, you will see the text translated to the desired language. 
 
 License
-Specify the license for your project, or indicate if no license is being used.
+
+No license needed 
 
 Acknowledgements
-Credit any external resources, tutorials, libraries, or tools (including AI tools) that supported your work.
+
+https://www.pythonguis.com/examples/translator-app-tkinter-google/#:~:text=app's%20source%20file.-,Building%20the%20Window,TranslatorApp()%20app.mainloop()
