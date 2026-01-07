@@ -15,11 +15,11 @@ To run the project, you must have a basic understanding of Python principles.
 
 Installation Instructions (if applicable)
 
-This program requires tkinter (tk), pandas(pd), and deep_translator (GoogleTranslator)
+This program requires stream lit, and deep_translator (GoogleTranslator)
 
 How to Run the Program
 
-To run it is best to use the path .venv
+Understanding how to implement stream lit so that the application runs correctly. 
 
 Usage Instructions
 
@@ -31,4 +31,4 @@ No license needed
 
 Acknowledgements
 
-https://www.pythonguis.com/examples/translator-app-tkinter-google/#:~:text=app's%20source%20file.-,Building%20the%20Window,TranslatorApp()%20app.mainloop()
+
