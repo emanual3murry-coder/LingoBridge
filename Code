@@ -1,0 +1,117 @@
+import tkinter as tk
+from tkinter import ttk
+from tkinter.messagebox import showerror
+from tkinter.scrolledtext import ScrolledText
+from deep_translator import GoogleTranslator
+import pandas as pd
+import os
+
+DEFAULT_SOURCE = "english"
+DEFAULT_DEST = "french"
+
+translator = GoogleTranslator(source=DEFAULT_SOURCE, target=DEFAULT_DEST)
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+IMAGES_DIR = os.path.join(BASE_DIR, "images")
+
+class TranslatorApp(tk.Tk):
+    def __init__(self):
+        super().__init__()
+        self.title("Language Translator")
+        self.resizable(True, True)
+        self.languages = translator.get_supported_languages(as_dict=True)
+        self.language_names = list(self.languages.keys())
+        self.setup_ui()
+
+    def setup_ui(self):
+        frame = tk.Frame(self)
+        frame.pack(padx=10, pady=10)
+
+        try:
+            self.logo = tk.PhotoImage(
+                file=os.path.join(IMAGES_DIR, "logo.png")
+            ).subsample(5, 5)
+            tk.Label(frame, image=self.logo).grid(row=0, column=0, sticky="w")
+        except tk.TclError:
+            tk.Label(frame, text="Translator").grid(row=0, column=0, sticky="w")
+
+        self.from_language = ttk.Combobox(frame, values=self.language_names, state="readonly")
+        self.from_language.current(self.language_names.index(DEFAULT_SOURCE))
+        self.from_language.grid(row=1, column=0, sticky="we")
+
+        try:
+            self.arrows = tk.PhotoImage(
+                file=os.path.join(IMAGES_DIR, "arrow.png")
+            ).subsample(15, 15)
+            tk.Label(frame, image=self.arrows).grid(row=1, column=1)
+        except tk.TclError:
+            tk.Label(frame, text="→").grid(row=1, column=1)
+
+        self.to_language = ttk.Combobox(frame, values=self.language_names, state="readonly")
+        self.to_language.current(self.language_names.index(DEFAULT_DEST))
+        self.to_language.grid(row=1, column=2, sticky="we")
+
+        # Source text
+        self.from_text = ScrolledText(
+            frame,
+            font=("Arial", 16),
+            width=50,
+            height=20,
+        )
+        self.from_text.grid(row=2, column=0)
+
+        # Translated text
+        self.to_text = ScrolledText(
+            frame,
+            font=("Arial", 16),
+            width=50,
+            height=20,
+            state="disabled",
+        )
+        self.to_text.grid(row=2, column=2)
+
+        # Translate button
+        self.translate_button = ttk.Button(
+            frame,
+            text="Translate",
+            command=self.translate,
+        )
+        self.translate_button.grid(row=3, column=0, columnspan=3, pady=10)
+
+    def translate(self):
+        source_language = self.languages[self.from_language.get()]
+        target_language = self.languages[self.to_language.get()]
+        text = self.from_text.get(1.0, tk.END).strip()
+
+        if not source_language or not target_language:
+            showerror(
+                title="Error",
+                message="Make sure to set the source and target language",
+            )
+            return
+
+        if not text:
+            showerror(
+                title="Error",
+                message="Make sure to enter some text to translate",
+            )
+            return
+        try:
+            translator.source = source_language
+            translator.target = target_language
+            translation = translator.translate(text)
+        except Exception as e:
+            showerror(
+                title="Error",
+                message=f"An error occurred: {e}",
+            )
+            return
+
+        self.to_text.config(state="normal")
+        self.to_text.delete(1.0, tk.END)
+        self.to_text.insert(tk.END, translation)
+        self.to_text.config(state="disabled")
+
+if __name__ == "__main__":
+    app = TranslatorApp()
+    app.mainloop()
