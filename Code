@@ -1,117 +1,122 @@
-import tkinter as tk
-from tkinter import ttk
-from tkinter.messagebox import showerror
-from tkinter.scrolledtext import ScrolledText
+import streamlit as st
 from deep_translator import GoogleTranslator
-import pandas as pd
-import os
 
+# -----------------------------
+# CONFIGURATION
+# -----------------------------
 DEFAULT_SOURCE = "english"
-DEFAULT_DEST = "french"
+DEFAULT_TARGET = "french"
 
-translator = GoogleTranslator(source=DEFAULT_SOURCE, target=DEFAULT_DEST)
+st.set_page_config(
+    page_title="Language Translator",
+    page_icon="🌍",
+    layout="wide",
+)
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-IMAGES_DIR = os.path.join(BASE_DIR, "images")
+# -----------------------------
+# CUSTOM STYLING (UI THEME)
+# -----------------------------
+st.markdown(
+    """
+    <style>
+    .main {
+        background-color: #f6f8fa;
+    }
+    textarea {
+        font-size: 16px !important;
+    }
+    .stButton button {
+        background-color: #2c7be5;
+        color: white;
+        border-radius: 8px;
+        padding: 0.6em 1.5em;
+        font-weight: 600;
+    }
+    .stButton button:hover {
+        background-color: #1a5fd0;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
-class TranslatorApp(tk.Tk):
-    def __init__(self):
-        super().__init__()
-        self.title("Language Translator")
-        self.resizable(True, True)
-        self.languages = translator.get_supported_languages(as_dict=True)
-        self.language_names = list(self.languages.keys())
-        self.setup_ui()
+# -----------------------------
+# HEADER
+# -----------------------------
+st.title("🌍 Language Translator")
+st.caption("Fast, simple text translation powered by Google Translator")
 
-    def setup_ui(self):
-        frame = tk.Frame(self)
-        frame.pack(padx=10, pady=10)
+# -----------------------------
+# LOAD LANGUAGES
+# -----------------------------
+translator = GoogleTranslator(source=DEFAULT_SOURCE, target=DEFAULT_TARGET)
+languages = translator.get_supported_languages(as_dict=True)
+language_names = sorted(languages.keys())
 
+# -----------------------------
+# LANGUAGE SELECTION
+# -----------------------------
+col1, col2, col3 = st.columns([4, 1, 4])
+
+with col1:
+    source_language = st.selectbox(
+        "From",
+        language_names,
+        index=language_names.index(DEFAULT_SOURCE)
+    )
+
+with col2:
+    st.markdown("<h2 style='text-align:center;'>➡️</h2>", unsafe_allow_html=True)
+
+with col3:
+    target_language = st.selectbox(
+        "To",
+        language_names,
+        index=language_names.index(DEFAULT_TARGET)
+    )
+
+# -----------------------------
+# TEXT INPUT / OUTPUT
+# -----------------------------
+left, right = st.columns(2)
+
+with left:
+    source_text = st.text_area(
+        "Enter text to translate",
+        height=250,
+        placeholder="Type or paste text here..."
+    )
+
+with right:
+    translated_text_placeholder = st.empty()
+
+# -----------------------------
+# TRANSLATE ACTION
+# -----------------------------
+if st.button("Translate"):
+    # ---- Input Validation ----
+    if not source_text.strip():
+        st.error("❌ Please enter text to translate.")
+    elif source_language == target_language:
+        st.error("❌ Source and target languages must be different.")
+    else:
         try:
-            self.logo = tk.PhotoImage(
-                file=os.path.join(IMAGES_DIR, "logo.png")
-            ).subsample(5, 5)
-            tk.Label(frame, image=self.logo).grid(row=0, column=0, sticky="w")
-        except tk.TclError:
-            tk.Label(frame, text="Translator").grid(row=0, column=0, sticky="w")
+            translator.source = languages[source_language]
+            translator.target = languages[target_language]
 
-        self.from_language = ttk.Combobox(frame, values=self.language_names, state="readonly")
-        self.from_language.current(self.language_names.index(DEFAULT_SOURCE))
-        self.from_language.grid(row=1, column=0, sticky="we")
+            translation = translator.translate(source_text)
 
-        try:
-            self.arrows = tk.PhotoImage(
-                file=os.path.join(IMAGES_DIR, "arrow.png")
-            ).subsample(15, 15)
-            tk.Label(frame, image=self.arrows).grid(row=1, column=1)
-        except tk.TclError:
-            tk.Label(frame, text="→").grid(row=1, column=1)
-
-        self.to_language = ttk.Combobox(frame, values=self.language_names, state="readonly")
-        self.to_language.current(self.language_names.index(DEFAULT_DEST))
-        self.to_language.grid(row=1, column=2, sticky="we")
-
-        # Source text
-        self.from_text = ScrolledText(
-            frame,
-            font=("Arial", 16),
-            width=50,
-            height=20,
-        )
-        self.from_text.grid(row=2, column=0)
-
-        # Translated text
-        self.to_text = ScrolledText(
-            frame,
-            font=("Arial", 16),
-            width=50,
-            height=20,
-            state="disabled",
-        )
-        self.to_text.grid(row=2, column=2)
-
-        # Translate button
-        self.translate_button = ttk.Button(
-            frame,
-            text="Translate",
-            command=self.translate,
-        )
-        self.translate_button.grid(row=3, column=0, columnspan=3, pady=10)
-
-    def translate(self):
-        source_language = self.languages[self.from_language.get()]
-        target_language = self.languages[self.to_language.get()]
-        text = self.from_text.get(1.0, tk.END).strip()
-
-        if not source_language or not target_language:
-            showerror(
-                title="Error",
-                message="Make sure to set the source and target language",
+            translated_text_placeholder.text_area(
+                "Translated text",
+                translation,
+                height=250
             )
-            return
 
-        if not text:
-            showerror(
-                title="Error",
-                message="Make sure to enter some text to translate",
-            )
-            return
-        try:
-            translator.source = source_language
-            translator.target = target_language
-            translation = translator.translate(text)
         except Exception as e:
-            showerror(
-                title="Error",
-                message=f"An error occurred: {e}",
-            )
-            return
+            st.error(f"⚠️ An unexpected error occurred: {e}")
 
-        self.to_text.config(state="normal")
-        self.to_text.delete(1.0, tk.END)
-        self.to_text.insert(tk.END, translation)
-        self.to_text.config(state="disabled")
-
-if __name__ == "__main__":
-    app = TranslatorApp()
-    app.mainloop()
+# -----------------------------
+# FOOTER
+# -----------------------------
+st.markdown("---")
+st.caption("Built with Streamlit • Deep Translator • Python")
