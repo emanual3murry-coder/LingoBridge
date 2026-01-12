@@ -1,34 +1,55 @@
 # Translation-App
-Translation Software
+LingoBridge Translation Software
 
-Project Title & Description
+Description
 
 This project was created for the software LingoBridge, which is a Translation Platform focused on real-time connection between speakers of different languages. 
 
 Overview
+The purpose of this application is to bridge language barriers through instant text translation. Users can select input and output languages, enter text, and receive immediate translations displayed side by side.
 
-The purpose of the application is to bridge the language gap between speakers of different languages, with a focus on facilitating colloquial communication. Some features include side-by-side translation and selecting from different languages. 
+Key features include:
+- Side-by-side text translation
+- Multiple language selection
+- Simple Streamlit-based user interface
+- Real-time translation using GoogleTranslator
 
 Prerequisites
 
-To run the project, you must have a basic understanding of Python principles. 
+Before running this project, ensure you have the following installed:
 
+- Python 3.8 or higher
+- pip (Python package manager)
+- Basic understanding of Python and command-line usage
 Installation Instructions (if applicable)
 
-This program requires stream lit, and deep_translator (GoogleTranslator)
+ 1. Clone or download the project files to your local machine.
+
+2. Install the required dependencies using pip:
+```bash
+pip install streamlit deep-translator
 
 How to Run the Program
 
-Understanding how to implement stream lit so that the application runs correctly. 
+1. Navigate to the project directory
+2. Run the Streamlit application
+3. The application will automatically open in your web browser.
+    If it does not, navigate to: http://localhost:8501
 
 Usage Instructions
 
-When you launch the platform, you open up to a screen that allows you to choose the languages you are translating between. After selecting languages, type the word or phrase you want on the left side and click "Translate". Then, on the right side, you will see the text translated to the desired language. 
+1. Upon launching the application, select the source language (input language).
+2. Select the target language (output language).
+3. Enter the word or phrase you wish to translate into the text box on the left.
+4. Click the Translate button.
+5. The translated text will appear on the right side of the screen.
 
 License
 
-No license needed 
+This project is not licensed and is intended for educational purposes only.
 
 Acknowledgements
-
+Streamlit for the web application framework
+deep-translator for translation functionality
+GoogleTranslator API via deep-translator
 
