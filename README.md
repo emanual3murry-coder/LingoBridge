@@ -52,6 +52,8 @@ Before running this project, ensure you have the following installed:
 4. Click the Translate button.
 5. The translated text will appear on the right side of the screen.
 
+**To improve user experience and personality, the app includes dynamic feedback messages, friendly success responses, and thoughtful empty states that guide users naturally through the translation process.**
+
 **License**
 
 This project is not licensed and is intended for educational purposes only.
