@@ -1,5 +1,5 @@
 # Translation-App
-LingoBridge Translation Software
+**LingoBridge Translation Software**
 
 **Description**
 
@@ -21,20 +21,27 @@ Before running this project, ensure you have the following installed:
 - Python 3.8 or higher
 - pip (Python package manager)
 - Basic understanding of Python and command-line usage
-Installation Instructions (if applicable)
+- deep-translator
+**Installation Instructions**
 
  1. Clone or download the project files to your local machine.
 
 2. Install the required dependencies using pip:
 
-pip install streamlit deep-translator
+    ***pip install streamlit deep-translator***
 
 **How to Run the Program**
 
 1. Navigate to the project directory
-2. Run the Streamlit application
-3. The application will automatically open in your web browser.
-    If it does not, navigate to: http://localhost:8501
+
+   ***cd Language-Translator***
+3. Run the Streamlit application
+
+   ***streamlit run app.py***
+5. The application will automatically open in your web browser.
+
+   If it does not, navigate to:
+   http://localhost:8501
 
 **Usage Instructions**
 
