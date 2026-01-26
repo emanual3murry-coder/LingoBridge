@@ -46,6 +46,21 @@ st.markdown(
 st.title("🌍 Language Translator")
 st.caption("Fast, simple text translation powered by Google Translator")
 
+#--------------------------------
+#SIDEBAR
+#------------------
+st.sidebar.header("🕘 Translation History")
+
+if "history" not in st.session_state:
+    st.session_state.history = []
+
+for item in reversed(st.session_state.history):
+    with st.sidebar.expander(f"{item['from']} → {item['to']}"):
+        st.write("**Input:**")
+        st.write(item["input"])
+        st.write("**Output:**")
+        st.write(item["output"])
+
 # -----------------------------
 # LOAD LANGUAGES
 # -----------------------------
@@ -57,6 +72,9 @@ language_names = sorted(languages.keys())
 # LANGUAGE SELECTION
 # -----------------------------
 col1, col2, col3 = st.columns([4, 1, 4])
+
+if "history" not in st.session_state:
+    st.session_state.history = []
 
 with col1:
     source_language = st.selectbox(
@@ -90,6 +108,11 @@ with left:
 with right:
     translated_text_placeholder = st.empty()
 
+MAX_CHARS = 5000
+char_count = len(source_text)
+
+st.caption(f"{char_count} / {MAX_CHARS} characters")
+
 # -----------------------------
 # TRANSLATE ACTION
 # -----------------------------
@@ -114,6 +137,14 @@ if st.button("Translate"):
 
         except Exception as e:
             st.error(f"⚠️ An unexpected error occurred: {e}")
+
+    st.session_state.history.append({
+    "from": source_language,
+    "to": target_language,
+    "input": source_text,
+    "output": translation
+})
+
 
 # -----------------------------
 # FOOTER
