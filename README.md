@@ -26,7 +26,7 @@ Installation Instructions (if applicable)
  1. Clone or download the project files to your local machine.
 
 2. Install the required dependencies using pip:
-```bash
+
 pip install streamlit deep-translator
 
 How to Run the Program
