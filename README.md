@@ -6,6 +6,7 @@
 This project was created for the software LingoBridge, which is a Translation Platform focused on real-time connection between speakers of different languages. 
 
 **Overview**
+
 The purpose of this application is to bridge language barriers through instant text translation. Users can select input and output languages, enter text, and receive immediate translations displayed side by side.
 
 **Key features include**
