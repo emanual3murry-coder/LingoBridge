@@ -14,6 +14,10 @@ The purpose of this application is to bridge language barriers through instant t
 - Multiple language selection
 - Simple Streamlit-based user interface
 - Real-time translation using GoogleTranslator
+- Real-time translation history panel
+- Character Count
+- Friendly Translation Reactions
+- Typing Mood Indicator
 
 **Prerequisites**
 
@@ -29,7 +33,9 @@ Before running this project, ensure you have the following installed:
 
 2. Install the required dependencies using pip:
 
-    ***pip install streamlit deep-translator***
+    ```
+    pip install streamlit
+    pip install deep-translator
 
 **How to Run the Program**
 
@@ -38,12 +44,14 @@ Before running this project, ensure you have the following installed:
    ***cd Language-Translator***
 3. Run the Streamlit application
 
-   ***streamlit run app.py***
+   ```   
+   streamlit run c:/Translator_App/.venv/Translator2.py
+   
 5. The application will automatically open in your web browser.
-
+   ```
    If it does not, navigate to:
    http://localhost:8501
-
+   ```
 **Usage Instructions**
 
 1. Upon launching the application, select the source language (input language).
