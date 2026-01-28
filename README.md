@@ -1,15 +1,15 @@
-# Translation-App
-**LingoBridge Translation Software**
+# Translation-App 
+#### LingoBridge Translation Software
 
-**Description**
+## Description
 
 This project was created for the software LingoBridge, which is a Translation Platform focused on real-time connection between speakers of different languages. 
 
-**Overview**
+## Overview
 
 The purpose of this application is to bridge language barriers through instant text translation. Users can select input and output languages, enter text, and receive immediate translations displayed side by side.
 
-**Key features include**
+## Key features include
 - Side-by-side text translation
 - Multiple language selection
 - Simple Streamlit-based user interface
@@ -19,15 +19,15 @@ The purpose of this application is to bridge language barriers through instant t
 - Friendly Translation Reactions
 - Typing Mood Indicator
 
-**Prerequisites**
+## Prerequisites
 
-Before running this project, ensure you have the following installed:
+#### Before running this project, ensure you have the following installed:
 
 - Python 3.8 or higher
 - pip (Python package manager)
 - Basic understanding of Python and command-line usage
 - deep-translator
-**Installation Instructions**
+## Installation Instructions
 
  1. Clone or download the project files to your local machine.
 
@@ -37,22 +37,24 @@ Before running this project, ensure you have the following installed:
     pip install streamlit
     pip install deep-translator
 
-**How to Run the Program**
+## How to Run the Program
 
 1. Navigate to the project directory
 
-   ***cd Language-Translator***
-3. Run the Streamlit application
+   ```
+   cd Language-Translator
+   ```
+2. Run the Streamlit application
 
    ```   
    streamlit run c:/Translator_App/.venv/Translator2.py
    
-5. The application will automatically open in your web browser.
+3. The application will automatically open in your web browser.
    ```
    If it does not, navigate to:
    http://localhost:8501
    ```
-**Usage Instructions**
+## Usage Instructions
 
 1. Upon launching the application, select the source language (input language).
 2. Select the target language (output language).
@@ -60,9 +62,9 @@ Before running this project, ensure you have the following installed:
 4. Click the Translate button.
 5. The translated text will appear on the right side of the screen.
 
-**To improve user experience and personality, the app includes dynamic feedback messages, friendly success responses, and thoughtful empty states that guide users naturally through the translation process.**
+***To improve user experience and personality, the app includes dynamic feedback messages, friendly success responses, and thoughtful empty states that guide users naturally through the translation process.*** 
 
-**License**
+## License**
 
 This project is not licensed and is intended for educational purposes only.
 
