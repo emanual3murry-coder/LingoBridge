@@ -47,7 +47,7 @@ The purpose of this application is to bridge language barriers through instant t
 2. Run the Streamlit application
 
    ```   
-   streamlit run c:/Translator_App/.venv/Translator2.py
+   streamlit run Translator2.py
    
 3. The application will automatically open in your web browser.
    ```
