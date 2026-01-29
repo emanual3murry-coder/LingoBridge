@@ -31,6 +31,7 @@ The purpose of this application is to bridge language barriers through instant t
 
  1. Clone or download the project files to your local machine.
    ```
+   git clone https://github.com/emanual3murry-coder/LingoBridge.git
    cd Language-Translator
    ```
  3. Create a virtual environment
