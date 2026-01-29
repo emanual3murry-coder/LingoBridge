@@ -30,8 +30,16 @@ The purpose of this application is to bridge language barriers through instant t
 ## Installation Instructions
 
  1. Clone or download the project files to your local machine.
-
-2. Install the required dependencies using pip:
+   ```
+   cd Language-Translator
+   ```
+ 3. Create a virtual environment
+  ```
+     python -m venv venv
+     source venv/bin/activate   # macOS/Linux
+     venv\Scripts\activate      # Windows
+   ```
+ 3. Install the required dependencies using pip:
 
     ```
     pip install streamlit
@@ -39,28 +47,24 @@ The purpose of this application is to bridge language barriers through instant t
 
 ## How to Run the Program
 
-1. Navigate to the project directory
-
-   ```
-   cd Language-Translator
-   ```
-2. Run the Streamlit application
+1. From the root directory, run the Streamlit application:
 
    ```   
    streamlit run Translator2.py
    
-3. The application will automatically open in your web browser.
-   ```
+2. The application will automatically open in your web browser.
    If it does not, navigate to:
+   ```
    http://localhost:8501
    ```
 ## Usage Instructions
 
-1. Upon launching the application, select the source language (input language).
-2. Select the target language (output language).
+1. Upon launching the application, select the **source language** (input language).
+2. Select the **target language** (output language).
 3. Enter the word or phrase you wish to translate into the text box on the left.
-4. Click the Translate button.
+4. Click the **Translate** button.
 5. The translated text will appear on the right side of the screen.
+6. Previous translations appear in the sidebar history panel.
 
 ***To improve user experience and personality, the app includes dynamic feedback messages, friendly success responses, and thoughtful empty states that guide users naturally through the translation process.*** 
 
